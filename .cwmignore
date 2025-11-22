@@ -1,0 +1,11 @@
+# --- CWM Global ---
+.git/
+.cwm/
+.env
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
+venv/
+__pycache__/
+.vscode/

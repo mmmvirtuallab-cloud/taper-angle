@@ -1,11 +1,51 @@
 body {
     margin: 0;
     padding: 0;
-    /* Use normal document flow so header/nav can sit above the canvas */
-    min-height: 100vh;
-    background-color: #f0f0f0;
+    /* Flex column to stack header and game area */
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* Force full viewport height */
+    background: linear-gradient(135deg, #1a1c2c 0%, #2a3c7d 100%);
+    overflow: hidden; /* Prevent scrolling on the body */
+}
+
+/* Lab Window: The Flex container for Sidebar + Game */
+.lab-window {
+    display: flex;
+    flex: 1; /* Take up all remaining height after header */
+    min-height: 0; /* Crucial for nested flex scrolling/sizing */
+    padding: 20px;
+    gap: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* The Sidebar */
+.steps-panel {
+    width: 300px;
+    flex-shrink: 0; /* Don't let sidebar shrink */
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 20px;
+    overflow-y: auto; /* Allow sidebar to scroll internally if needed */
+    display: flex;
+    flex-direction: column;
+}
+
+/* The Game Area */
+#game-container {
+    flex: 1; /* Take remaining width */
+    position: relative;
+    display: flex;
+    justify-content: center; /* Center canvas horizontally */
+    align-items: center;     /* Center canvas vertically */
+    background: rgba(0, 0, 0, 0.1); /* Optional: visual backing for game area */
+    border-radius: 15px;
+    overflow: hidden;
 }
 
 canvas {
-    border: none;
+    /* Remove default canvas styling that might conflict */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
 }

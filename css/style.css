@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+    /* Use normal document flow so header/nav can sit above the canvas */
+    min-height: 100vh;
+    background-color: #f0f0f0;
+}
+
+canvas {
+    border: none;
+}

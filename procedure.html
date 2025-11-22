@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedure - Virtual Lab</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1a1c2c 0%, #2a3c7d 100%);
+            min-height: 100vh;
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.8) !important;
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: white !important;
+        }
+        .nav-link.active {
+            color: white !important;
+            font-weight: bold;
+        }
+        .experiment-header {
+            background: rgba(255,255,255,0.05);
+            padding: 1rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+        }
+        .procedure-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            color: white;
+            margin: 20px;
+        }
+        .step {
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid rgba(255,255,255,0.2);
+        }
+        .step-number {
+            font-weight: bold;
+            color: #00ff88;
+            margin-right: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <div class="experiment-header text-center">
+                <h1 class="text-white">Measurement Of Taper Angle (Internal)</h1>
+            </div>
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="experiment.html">Experiment</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="quiz.html">Pre Lab Quiz</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link active" href="procedure.html">Procedure</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="lab.html">Lab</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="procedure-card">
+            <h2 class="mb-4">Procedure for Measuring Internal Taper Angle</h2>
+            
+            <div class="step">
+                <p><span class="step-number">1.</span> Measure the diameter of both balls accurately using a vernier caliper.</p>
+            </div>
+            
+            <div class="step">
+                <p><span class="step-number">2.</span> Place the smaller ball inside the tapered hole.</p>
+            </div>
+            
+            <div class="step">
+                <p><span class="step-number">3.</span> Using the height gauge, measure the height of the ball from the reference surface (h1).</p>
+            </div>
+            
+            <div class="step">
+                <p><span class="step-number">4.</span> Remove the smaller ball and place the larger ball in the tapered hole.</p>
+            </div>
+            
+            <div class="step">
+                <p><span class="step-number">5.</span> Measure the height of the larger ball from the same reference surface (h2).</p>
+            </div>
+            
+            <div class="step">
+                <p><span class="step-number">6.</span> Calculate the difference in heights (h2 - h1).</p>
+            </div>
+            
+            <div class="step">
+                <p><span class="step-number">7.</span> Calculate the taper angle using the formula:</p>
+                <p class="ms-4">sin α = (R - r) / (h2 - h1)</p>
+                <p class="ms-4">where R = radius of larger ball, r = radius of smaller ball</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

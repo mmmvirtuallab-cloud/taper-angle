@@ -1,64 +1,69 @@
-/* Common styles for header and navigation */
+/* --- Base Layout & Background --- */
 body {
     margin: 0;
     padding: 0;
+    /* The Dark Blue Gradient you requested */
     background: linear-gradient(135deg, #1a1c2c 0%, #2a3c7d 100%);
     min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: white;
 }
 
-/* Header styling */
-.experiment-header {
-    background: rgba(255,255,255,0.05);
-    padding: 1rem;
-    margin-bottom: 0.5rem;
-    border-radius: 15px;
-}
-
-/* Navigation styling */
-.navbar {
-    background: rgba(255,255,255,0.05) !important;
-    border-radius: 15px;
-    padding: 0.5rem 1rem;
-    margin-bottom: 1.5rem;
-}
-
-.navbar-nav {
-    display: flex;
-    gap: 1rem;
-    align-items: center;
-}
-
-.nav-item {
-    margin: 0;
-}
-
-.nav-link {
-    color: rgba(255,255,255,0.7) !important;
-    transition: all 0.3s ease;
-    padding: 0.5rem 1.5rem !important;
-    font-size: 1rem;
-    border-radius: 8px;
-}
-
-.nav-link:hover {
-    color: white !important;
-    background: rgba(255,255,255,0.08);
-}
-
-.nav-link.active {
-    color: white !important;
-    background: rgba(255,255,255,0.1);
-    font-weight: 500;
-}
-
-/* Container adjustment */
 .container-fluid {
     padding: 1rem;
     max-width: 1400px;
     margin: 0 auto;
 }
 
-/* Common container styles */
-.container-fluid {
-    padding: 1rem;
+/* --- The Unified Header Box --- */
+.experiment-header {
+    /* Glassy Background */
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px); /* Optional: Adds a blur effect behind */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 15px;
+    
+    /* Flexbox to put Title Left, Button Right */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* --- Title Styling --- */
+.header-title {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: white;
+}
+
+/* --- The Small White Button --- */
+.nav-btn {
+    background-color: white;
+    color: #1a1c2c; /* Dark text to match theme */
+    text-decoration: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-btn:hover {
+    background-color: #f1f5f9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Mobile Responsive adjustment */
+@media (max-width: 768px) {
+    .experiment-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
 }

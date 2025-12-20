@@ -72,25 +72,18 @@ function showStepModal(text) {
 }
 
 function showExperimentComplete() {
-    highlightStep(5); // Just unhighlight others
-    const stepsPanel = document.querySelector('.steps-panel');
-    if (stepsPanel && !document.querySelector('.completion-message')) {
-        const completionDiv = document.createElement('div');
-        completionDiv.className = 'completion-message';
-        completionDiv.innerHTML = `
-            <div style="margin-top:20px; padding:15px; background: linear-gradient(135deg, #4a569d, #1a1c2c); border-radius: 8px; color: white; text-align: center;">
-                <p style="font-weight:bold; margin-bottom:10px;">Experiment Complete!</p>
-                <button id="calculateBtn" class="btn btn-light btn-sm">Calculate Results</button>
-            </div>
-        `;
-        stepsPanel.appendChild(completionDiv);
-        document.getElementById('calculateBtn').addEventListener('click', function() {
-            const r = 2; const R = 4; const height = 5;
-            const rDiff = R - r;
-            const sinAlpha = rDiff / height;
-            const alpha = Math.asin(sinAlpha) * (180 / Math.PI);
-            window.location.href = `results.html?r=${r}&R=${R}&rDiff=${rDiff}&height=${height}&alpha=${alpha}`;
-        });
+    highlightStep(5); // Unhighlight measuring steps
+
+    // 1. Find the hidden card we added in HTML
+    const completionCard = document.getElementById('completionCard');
+    
+    // 2. Make it visible
+    if (completionCard) {
+        completionCard.style.display = 'block';
+        
+        // Optional: Scroll to make sure user sees it
+        const stepsPanel = document.querySelector('.steps-panel');
+        stepsPanel.scrollTop = stepsPanel.scrollHeight;
     }
 }
 

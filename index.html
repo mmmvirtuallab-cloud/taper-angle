@@ -1,67 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Virtual Lab - Welcome</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(45deg, #1a1c2c, #4a569d);
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-        }
-        .welcome-container {
-            text-align: center;
-            color: white;
-            animation: fadeIn 2s ease-in;
-        }
-        .title {
-            font-size: 4rem;
-            margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: float 3s ease-in-out infinite;
-        }
-        .enter-btn {
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            border-radius: 30px;
-            background: linear-gradient(45deg, #00ff88, #00a1ff);
-            border: none;
-            color: white;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        .enter-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0,255,136,0.5);
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-    </style>
+    <title>Taper Angle Lab</title>
+    <link rel="stylesheet" href="intro.css">
 </head>
+
 <body>
-    <div class="welcome-container">
-        <h1 class="title">Virtual Lab</h1>
-        <h1 >Measurement Of Taper Angle (Internal) </h1>
-        <button class="enter-btn" id="enterBtn">Enter</button>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Redirect to quiz page when enter is clicked
-        document.getElementById('enterBtn').addEventListener('click', function() {
-            window.location.href = 'experiment.html';
-        });
-    </script>
+
+    <header class="intro-header">
+        <div id="top-bar-title" class="header-title">Loading...</div>
+
+        <div class="header-actions">
+            <button class="header-btn home-btn" onclick="window.location.href='/home/'">Home</button>
+
+            <button id="action-btn" class="header-btn">Loading...</button>
+        </div>
+    </header>
+
+    <main class="content-wrapper">
+        <div class="info-card">
+            <h1 id="main-title">Loading...</h1>
+            <hr class="divider">
+            <div id="main-desc" class="card-body">Loading...</div>
+        </div>
+    </main>
+
+    <footer id="intro-footer" class="intro-footer"></footer>
+
+    <script type="module" src="intro/intro.js"></script>
 </body>
+
 </html>

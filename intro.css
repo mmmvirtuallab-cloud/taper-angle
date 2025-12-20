@@ -1,0 +1,150 @@
+/* Reset & Fonts */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f1f5f9;
+    color: #333;
+    
+    /* Lock screen height - NO SCROLLING */
+    height: 100vh;
+    overflow: hidden;
+    
+    /* Layout: Header -> Content -> Footer */
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- Header --- */
+.intro-header {
+    background-color: #154e67;
+    color: white;
+    height: 70px; /* Slightly reduced height */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    flex-shrink: 0; 
+    z-index: 100;
+}
+
+.header-title { font-size: 1.4rem; font-weight: 700; }
+
+.header-btn {
+    background-color: white;
+    color: #154e67;
+    border: none;
+    padding: 10px 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.header-btn:hover { background-color: #f8fafc; transform: translateY(-2px); }
+
+/* --- Main Wrapper --- */
+.content-wrapper {
+    flex: 1; /* Takes all available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 40px; /* Space around the white card */
+}
+
+/* --- The White Card --- */
+.info-card {
+    background: white;
+    width: 100%;
+    max-width: 1200px;
+    height: 100%; /* Stretches to fill wrapper */
+    
+    /* Flex Column to spread content vertically */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    
+    padding: 30px 50px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.info-card h1 {
+    color: #1e293b;
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.divider {
+    border: 0;
+    height: 1px;
+    background: #e2e8f0;
+    width: 100%;
+    margin: 10px 0;
+}
+
+/* --- Card Body (Text Content) --- */
+.card-body {
+    flex-grow: 1; /* Fills remaining space inside card */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly; /* Evenly spaces Aim, Ack, Students */
+}
+
+/* Typography for Sections */
+.section-block {
+    text-align: left;
+}
+
+.section-title {
+    color: #1e293b;
+    font-size: 1.2rem;
+    margin: 0 0 5px 0; /* Tight spacing */
+    font-weight: 700;
+    text-transform: uppercase; /* Makes headings look cleaner */
+    letter-spacing: 0.5px;
+}
+
+.section-text {
+    text-align: justify;
+    color: #475569;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* --- Student Grid (2 Columns) --- */
+.student-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 2 Equal Columns */
+    gap: 10px 20px;
+    list-style: none; /* No bullets */
+    padding: 0;
+    margin: 0;
+}
+
+.student-grid li {
+    background-color: #f8fafc;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-weight: 500;
+    color: #334155;
+    font-size: 0.95rem;
+    border: 1px solid #e2e8f0;
+}
+
+/* --- Footer (Fixed) --- */
+.intro-footer {
+    background-color: #e2e8f0; /* Grey background */
+    color: #64748b;
+    text-align: center;
+    padding: 12px;
+    font-size: 0.85rem;
+    border-top: 1px solid #cbd5e1;
+    flex-shrink: 0; /* Ensures fixed height */
+}

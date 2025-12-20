@@ -9,25 +9,132 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/style.css">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+
+    <style>
+        /* --- RESULTS POPUP STYLES (From previous step) --- */
+        .results-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(26, 28, 44, 0.6);
+            backdrop-filter: blur(8px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .results-popup {
+            background: white;
+            color: #333;
+            width: 90%;
+            max-width: 500px;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .results-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .results-overlay.active .results-popup {
+            transform: scale(1);
+        }
+
+        .formula-box {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .formula-eq {
+            font-family: 'Times New Roman', serif;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2a3c7d;
+            margin-bottom: 10px;
+        }
+
+        .final-result {
+            font-size: 1.5rem;
+            color: #198754;
+            font-weight: 800;
+            margin-top: 15px;
+        }
+
+        .btn-close-custom {
+            background: #2a3c7d;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .btn-close-custom:hover {
+            background: #1a1c2c;
+            transform: translateY(-2px);
+        }
+
+        /* --- NEW: Experiment Complete Card Styles --- */
+        .completion-card {
+            display: none;
+            /* Hidden by default! */
+            background: linear-gradient(135deg, #1a1c2c 0%, #2a3c7d 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 0.5s;
+        }
+
+        .completion-card h4 {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .btn-result-trigger {
+            background: white;
+            color: #2a3c7d;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            width: 100%;
+            transition: transform 0.2s;
+        }
+
+        .btn-result-trigger:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+    </style>
 </head>
 
 <body>
 
     <div class="container-fluid">
-        <div class="experiment-header text-center">
-            <h1 class="text-white fs-3 py-2">Measurement Of Taper Angle (Internal)</h1>
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-dark">
-            <div class="container-fluid justify-content-center">
-                <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="experiment.html">Experiment</a></li>
-                    <li class="nav-item"><a class="nav-link" href="quiz.html">Pre Lab Quiz</a></li>
-                    <li class="nav-item"><a class="nav-link" href="procedure.html">Procedure</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="lab.html">Lab</a></li>
-                </ul>
-            </div>
-        </nav>
+        <header class="experiment-header">
+            <h1 class="header-title">Measurement Of Taper Angle (Internal)</h1>
+            <a class="nav-btn" href="index.html">&larr; Introduction</a>
+        </header>
     </div>
 
     <div class="lab-window">
@@ -59,9 +166,34 @@
                     </div>
                 </div>
             </div>
+
+            <div id="completionCard" class="completion-card">
+                <h4>Experiment Complete!</h4>
+                <button class="btn-result-trigger" onclick="showResults()">
+                    Calculate Results
+                </button>
+            </div>
         </div>
 
         <div id="game-container" class="animate__animated animate__fadeIn"></div>
+    </div>
+
+    <div class="results-overlay" id="resultsOverlay">
+        <div class="results-popup">
+            <h2 class="text-center mb-3">Experiment Results</h2>
+            <div class="formula-box">
+                <h5>Formula:</h5>
+                <p class="formula-eq">sin(α) = (R - r) / h</p>
+                <hr>
+                <div id="calc-details" class="text-start"></div>
+                <hr>
+                <h5>Calculated Taper Angle:</h5>
+                <p class="final-result" id="final-angle">Loading...</p>
+            </div>
+            <div class="text-center">
+                <button class="btn-close-custom" onclick="closeResults()">Back to Experiment</button>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
@@ -71,6 +203,58 @@
     <script src="js/objects/ruler.js"></script>
     <script src="js/utils/physics.js"></script>
     <script src="js/game.js"></script>
+
+    <script>
+        // 1. Popup Logic
+        // Function to show the popup (NOT redirect)
+        function showResults() {
+            // 1. Get Elements
+            const overlay = document.getElementById('resultsOverlay');
+            const calcDetails = document.getElementById('calc-details');
+            const finalAngle = document.getElementById('final-angle');
+
+            // 2. Perform Calculations
+            // (Replace these hardcoded values with variables from your game if needed)
+            const r = 2;        // Blue ball radius
+            const R = 4;        // Red ball radius
+            const height = 5;   // Height difference
+            const rDiff = R - r;
+
+            // Calculate Angle
+            const sinAlpha = rDiff / height;
+            const alpha = Math.asin(sinAlpha) * (180 / Math.PI); // Convert radians to degrees
+
+            // 3. Inject HTML into the popup
+            calcDetails.innerHTML = `
+        <p><strong>R (Red Ball):</strong> ${R} mm</p>
+        <p><strong>r (Blue Ball):</strong> ${r} mm</p>
+        <p><strong>h (Height Diff):</strong> ${height} mm</p>
+        <p class="mt-2 text-muted" style="font-family: monospace;">
+            sin(α) = ${rDiff} / ${height} = ${sinAlpha.toFixed(4)}
+        </p>
+    `;
+
+            finalAngle.innerHTML = `α = ${alpha.toFixed(2)}°`;
+
+            // 4. Show the Overlay
+            overlay.classList.add('active');
+        }
+
+        function closeResults() {
+            document.getElementById('resultsOverlay').classList.remove('active');
+        }
+
+        // 2. Function to Trigger Completion
+        // CALL THIS FUNCTION INSIDE YOUR game.js WHEN STEP 4 ENDS
+        function completeExperiment() {
+            const card = document.getElementById('completionCard');
+            card.style.display = 'block'; // Show the card
+
+            // Optional: Scroll sidebar to bottom to see button
+            const sidebar = document.querySelector('.steps-panel');
+            sidebar.scrollTop = sidebar.scrollHeight;
+        }
+    </script>
 </body>
 
 </html>

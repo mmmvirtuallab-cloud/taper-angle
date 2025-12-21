@@ -2,10 +2,10 @@
 
 export const INTRO_CONTENT = {
     // Top Blue Bar Text
-    headerTitle: "Taper Angle Measurement ",
+    headerTitle: "Taper Angle",
     
     // Button Text & Link
-    buttonLabel: "Go to Experiment",
+    buttonLabel: "Experiment",
     buttonLink: "lab.html",
 
     // Main Page Content
@@ -21,9 +21,8 @@ export const INTRO_CONTENT = {
     
     // Student List
     students: [
-        "A. M. ISMAIL - 2023507030",
-        "V. B. JAYARAM - 2023507040",
-        "M. RAM BHARATH - 2023507039",
-        "R. MONISH KUMAR - 2023507038"
+        "HEMADARSHINI S - 2023507006",
+        "LOGAJANAI R - 2023507024",
+        "HONNAMBIKA S -2023507047"
     ]
 };

@@ -148,3 +148,117 @@ body {
     border-top: 1px solid #cbd5e1;
     flex-shrink: 0; /* Ensures fixed height */
 }
+
+/* =========================================
+   MOBILE RESPONSIVE STYLES (Max Width 768px)
+   ========================================= */
+@media (max-width: 768px) {
+    body {
+        height: 100dvh; /* Dynamic height: excludes browser URL bars */
+        min-height: -webkit-fill-available; /* iOS fix */
+    }
+
+    /* 1. Header: Compact size */
+    .intro-header {
+        height: 60px;
+        padding: 0 10px; 
+    }
+
+    .header-title {
+        font-size: 1.2rem; 
+        max-width: 40%; 
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    /* 2. Buttons: Tiny and Compact */
+    .header-actions { gap: 8px; }
+
+     .header-btn {
+        padding: 6px 10px; /* Very small padding */
+        font-size: 0.75rem; /* Smaller font */
+        border-radius: 4px; /* Tighter corners */
+        height: auto; /* Ensure height fits content */
+        line-height: 1; /* Prevent extra vertical space */
+    }
+
+    /* 3. Wrapper: Maximize screen usage */
+    .content-wrapper {
+        padding: 10px; /* Very minimal edge padding */
+        overflow: hidden; /* Ensures the wrapper itself never scrolls */
+    }
+
+    /* 4. Info Card: Full Height & Flex Layout */
+    .info-card {
+        width: 100%;
+        height: 100%; /* Force it to fill the screen */
+        padding: 15px 15px 5px 15px; /* Tighter padding */
+        border-radius: 8px;
+        
+        display: flex;
+        flex-direction: column; /* Stack children */
+    }
+
+    .info-card h1 {
+        font-size: 1.2rem; 
+        margin-bottom: 5px;
+        flex-shrink: 0; /* Stop title from squashing */
+    }
+
+    .divider {
+        margin: 5px 0;
+        flex-shrink: 0;
+    }
+
+    /* 5. Content Body: THE SCROLLABLE PART */
+    /* Note: Use .description-area if using React, or .card-body if using HTML */
+    .description-area, .card-body {
+        flex-grow: 1;    /* Take all remaining vertical space */
+        min-height: 0;   /* CRITICAL: Allows scrolling inside a flex item */
+        overflow-y: auto; /* Enable internal scrolling */
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Start from top */
+        gap: 10px; /* Give sections breathing room */
+        padding-right: 5px; 
+        text-align: left;
+    }
+
+    /* Typography inside the card */
+    .aim-section h3, .ack-section h3, .section-title {
+        font-size: 1rem;
+        margin-bottom: 5px;
+        color: #1e293b /* distinct color for headings */
+    }
+
+    .aim-section p, .ack-section p, .section-text {
+        font-size: 0.9rem; 
+        line-height: 2;
+        margin-bottom: 0; /* Let 'gap' handle spacing */
+    }
+
+    /* 6. Student Grid: Stack vertically */
+    .student-list, .student-grid {
+        grid-template-columns: 1fr; /* 1 Column */
+        gap: 15px;
+        padding-bottom: 10px; /* Space at the bottom of the scroll */
+    }
+
+    .student-list li, .student-grid li {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+
+    /* 7. Footer: Tiny */
+    .intro-footer {
+        flex-shrink: 0; /* CRITICAL: Never let footer be pushed off */
+        padding: 8px;
+        font-size: 0.65rem;
+        white-space: normal;
+        line-height: 1.3;
+        background-color: #e2e8f0;
+        z-index: 10; /* Ensure it sits on top if overlapping happens */
+    }
+}

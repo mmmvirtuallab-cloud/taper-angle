@@ -21,8 +21,8 @@ export const INTRO_CONTENT = {
     
     // Student List
     students: [
-        "HEMADARSHINI S - 2023507006",
-        "LOGAJANAI R - 2023507024",
-        "HONNAMBIKA S -2023507047"
+        { name: "HEMADARSHINI S", roll: "2023507006", image: "../studentimages/2023507006.jpg" },
+        { name: "LOGAJANAI R", roll: "2023507024", image: "../studentimages/2023507024.jpg" },
+        { name: "HONNAMBIKA S", roll: "2023507047", image: "../studentimages/2023507047.jpg" }
     ]
 };
